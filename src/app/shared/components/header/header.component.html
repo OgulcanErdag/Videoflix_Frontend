@@ -1,0 +1,24 @@
+<header>
+  @if( actualRoute != "/videos" && actualRoute != "/legal-notice" && actualRoute != "/privacy-policy"){
+    @if(isWideScreen){
+      <img (click)="navigator.navigateTo('/')"   src="shared/images/logo-long.webp" alt="">
+    }@else {
+      <img  class="logo-short"  src="shared/images/logo-short.webp" alt="">
+    }
+  }@else{
+    <img (click)="navigator.goBack()" class="logo-short"  src="shared/images/logo-short.webp" alt="">
+  }
+  
+  @if(actualRoute != "/login" && actualRoute != "/legal-notice" && actualRoute != "/privacy-policy" && actualRoute != "/videos"){
+    <button (click)="navigator.navigateTo('/login')" class="default">Log in</button>
+  }
+  @if( actualRoute == "/legal-notice" || actualRoute == "/privacy-policy"){
+    <mat-icon class="legal-icon" (click)="navigator.goBack()">arrow_back</mat-icon>
+  }
+  @if(actualRoute == "/videos"){
+    <button (click)="authService.logout()" class="default">
+      <mat-icon class="logout">logout</mat-icon>
+      <span>Log out</span>
+    </button>
+  }
+</header>

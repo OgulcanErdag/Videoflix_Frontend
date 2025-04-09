@@ -1,0 +1,14 @@
+@if(toastService.positiveMessage()) {
+  <div class="toast-message success">
+    <mat-icon class="success">task_alt</mat-icon>
+    <p>{{ toastService.positiveMessage() }}</p>
+    
+  </div>
+}
+
+@if(toastService.negativeMessage()) {
+  <div class="toast-message error">
+    <mat-icon class="error">report</mat-icon>
+    <p>{{ toastService.negativeMessage() }}</p>
+  </div>
+}

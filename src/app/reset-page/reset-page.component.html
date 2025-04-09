@@ -1,0 +1,12 @@
+<div
+  class="background"
+  [ngClass]="backgroundService.animationClass()"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundService.currentBackground() + ')' }">
+</div>
+
+
+<section>
+  <app-header></app-header>
+  <app-reset-page-content class="landing-main-content"></app-reset-page-content>
+  <app-footer class="footer"></app-footer>
+</section>

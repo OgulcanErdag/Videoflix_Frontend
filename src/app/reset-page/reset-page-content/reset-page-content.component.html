@@ -1,0 +1,48 @@
+<div class="form-container" [ngClass]="{'successful': authService.successful()}">
+  <form action="" class="form-login" [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()"
+    #resetPasswordFormRef="ngForm">
+    <h1 class="form-title title-mobile">Reset password</h1>
+    @if(!authService.successful()){
+
+
+    <p class="p-forgot">Create a new password for your <span class="app-name">Videoflix </span>account.</p>
+    <div class="formField">
+      <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Enter a password" formControlName="password"
+        #password>
+      <mat-icon class="visible" (click)="showPassword = !showPassword">{{ showPassword ? 'visibility' : 'visibility_off'
+        }}</mat-icon>
+      @if (passwordControl.invalid && passwordControl.touched) {
+      <p class="error-message">
+        @if (passwordControl.hasError('required')) { Password is required. }
+        @if (passwordControl.hasError('pattern')) { Min. 8 letters, 1 uppercase and 1 number. }
+      </p>
+      }
+    </div>
+    <div class="formField">
+      <input type="{{ showRepeatedPassword ? 'text' : 'password' }}" placeholder="Confirm password"
+        formControlName="repeated_password" #password>
+      <mat-icon class="visible" (click)="showRepeatedPassword = !showRepeatedPassword">{{ showRepeatedPassword ?
+        'visibility' : 'visibility_off' }}</mat-icon>
+      @if (resetPasswordForm.errors?.['passwordMismatch'] && (resetPasswordForm.dirty || resetPasswordForm.touched)) {
+      <div class="error-message">
+        Passwords do not match.
+      </div>
+      }
+    </div>
+    }@else{
+    <p class="p-forgot"><strong>Password</strong> reset successfully, please check your <strong>email</strong>.
+      If you don't see the <strong>email</strong>, please check your <strong>spam</strong> folder.
+      If you still cant find the <strong>email</strong>, please try again.
+    </p>
+    }
+  </form>
+  <div class="form-footer">
+    @if(!authService.successful()){
+    <button class="default" [disabled]="!resetPasswordForm.valid || authService.sending()" type="submit"
+      (click)="resetPasswordFormRef.ngSubmit.emit()">Reset password </button>
+    }@else {
+    <button class="default" type="submit" [disabled]="authService.sending()" (click)="navigator.navigateTo('/login')">Gotcha</button>
+    }
+  </div>
+
+</div>

@@ -1,0 +1,51 @@
+@mixin display($display: flex,$flex-direction: row, $justify-content: center, $align-items: center ) {
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  display: $display;
+}
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+
+  @if $top != null {
+    top: $top;
+  }
+  @if $right != null {
+    right: $right;
+  }
+  @if $bottom != null {
+    bottom: $bottom;
+  }
+  @if $left != null {
+    left: $left;
+  }
+}
+
+@mixin elipsis($width: null, $lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @if $width != null {
+      width: $width;
+      max-width: $width;
+    }
+  } @else {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $lines;
+
+    @if $width != null {
+      width: $width;
+      max-width: $width;
+    }
+  }
+}
+
+$blue : #2E3EDF;
+$blue-hover : #2e3ddfa6;
+$blue-disabled : #969EEF;

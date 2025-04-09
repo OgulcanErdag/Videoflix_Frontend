@@ -1,0 +1,16 @@
+@use '../../shared/styles/landing-shared.scss' as *;
+@use '../../shared/styles/mixins.scss' as *;
+
+
+
+.links{
+  @include display(flex, column, flex-start, center);
+  
+}
+
+h1, p, div, span, a {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+}

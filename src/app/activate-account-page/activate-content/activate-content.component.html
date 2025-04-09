@@ -1,0 +1,14 @@
+<div class="form-container" [ngClass]="{'successful': success}">
+    <form class="form-login" >
+        <h1 class="form-title">
+            @if(loading) { Activate your account... }@else {
+                @if(error) { {{ error }} }@else {
+                    @if(success) { {{ success }} }@else {
+                        Activate your account
+                    }
+                }
+            }
+        </h1>
+    </form>
+</div>
+

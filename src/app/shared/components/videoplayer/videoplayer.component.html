@@ -1,0 +1,80 @@
+<div class="video-container" (mousemove)="showControls()">
+  
+  <!-- Pre-Play Overlay -->
+  @if (showOverlay) {
+    <div class="video-overlay">
+      @if (isLoading) {
+        <div class="spinner"></div>
+      }
+      <h2>{{ currentVideoData?.title }}</h2>
+      <p>{{ currentVideoData?.description }}</p>
+
+      <div class="overlay-buttons">
+        <button (click)="startVideo()">
+          @if (videoEnded || currentVideoData?.user_progress?.viewed) {
+            🔄 Replay
+          } @else if (getProgress() > 0 || (currentVideoData?.user_progress && currentVideoData.user_progress.last_viewed_position !== undefined)) {
+            ▶ Continue
+          } @else {
+            ▶ Play
+          }
+        </button>
+        <button (click)="closeVideo()">❌ Close</button>
+      </div>
+    </div>
+  }
+
+  <!-- Video Player -->
+  <video #videoPlayerFull width="640" height="360" 
+         (click)="togglePlay()" 
+         (timeupdate)="updateProgress()"></video>
+
+  <!-- Close Button -->
+  <div class="close-button" (click)="closeVideo()">
+    <mat-icon>close</mat-icon>
+  </div>
+
+  <!-- Custom Controls -->
+  <div class="custom-controls" [class.visible]="controlsVisible">
+    <button (click)="togglePlay()">
+      <span *ngIf="!isPlaying">▶️</span>
+      <span *ngIf="isPlaying">⏸️</span>
+    </button>
+    
+    <div class="volume-control">
+      <button (click)="toggleMute()">
+        <span *ngIf="!isMuted && currentVolume > 0.5">🔊</span>
+        <span *ngIf="!isMuted && currentVolume > 0 && currentVolume <= 0.5">🔉</span>
+        <span *ngIf="isMuted || currentVolume === 0">🔇</span>
+      </button>
+      <input type="range" min="0" max="1" step="0.01" [(ngModel)]="currentVolume" (input)="changeVolume($event)" class="volume-slider"/>
+    </div>
+    
+    <div class="progress-container">
+      <div class="progress-bar" (click)="seek($event)">
+        <div class="progress" [style.width.%]="progress"></div>
+      </div>
+      <div class="time-display">
+        {{ currentTime }}s / {{ totalDuration }}s
+      </div>
+    </div>
+
+    <select (change)="changeQuality($event)" class="quality-selector">
+      <option [value]="-1" [selected]="currentQuality === -1">Auto</option>
+      <option *ngFor="let quality of availableQualities" [value]="quality.level">
+        {{ quality.label }}
+      </option>
+    </select>
+    
+    <button (click)="toggleFullscreen()">🔳</button>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

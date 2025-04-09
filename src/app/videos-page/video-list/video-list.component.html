@@ -1,0 +1,108 @@
+<div class="background-video-container">
+  @if(videoService.currentBackgroundVideo()) {
+    @if(videoService.currentVideo() != null){
+      <img src="{{ videoService.currentBackgroundVideo().thumbnail }}" alt="">
+
+    }@else{
+      <video class="background-video" [src]="videoService.currentBackgroundVideo().file" autoplay muted [muted]="true"
+      [playsInline]="true" (ended)="videoService.onBackgroundVideoEnded()" play="videoService.currentVideo() !=null">
+
+      </video>
+      <div class="overlay-content">
+        <h1>{{ videoService.currentBackgroundVideo().title }}</h1>
+        <p>{{ videoService.currentBackgroundVideo().description }}</p>
+        <button class="default" (click)="videoService.currentVideo.set(videoService.currentBackgroundVideo().id)">Play</button>
+      </div>
+    }
+  }
+</div>
+
+<div class="list-container">
+  @for (genre of videoService.getGenreKeys(); track genre) {
+  <div class="genre-list">
+    <h2>{{ genre.charAt(0).toUpperCase() + genre.slice(1) }}</h2>
+    <div class="video-carousel" appHorizontalDirectives>
+      @for (video of videoService.genres()[genre]; track video.id) {
+        <div class="video-item" 
+     (mouseenter)="videoService.onMouseEnter(video.id, 'genre-' + genre)" 
+     (mouseleave)="videoService.onMouseLeave()"
+     (touchstart)="videoService.onTouchStart(video.id, 'genre-' + genre)"
+     (touchend)="videoService.onTouchEnd()"
+     (click)="videoService.selectVideo(video.id)">
+
+    @if (videoService.hoveredVideoId() === (video.id + '-genre-' + genre)) {
+      <video class="video-preview" #videoPlayer [muted]="true" [playsInline]="true" [src]="video.file" autoplay muted
+        (loadedmetadata)="videoService.onVideoLoaded(videoPlayer, video.id, 'genre-' + genre)"
+        (timeupdate)="videoService.checkVideoTime(videoPlayer)">
+      </video>
+    } @else {
+      <div class="video-preview-thumbnail">
+        <span class="video-title-thumbnail">{{video.title}}</span>
+        <img class="thumbnail-image" [src]="video.thumbnail" [alt]="video.title" />
+      </div>
+    }
+  </div>
+      }
+    </div>
+  </div>
+  }
+@if(videoService.viewedVideos().length > 0) {
+  
+
+  <div class="genre-list">
+    <h2>Already Viewed</h2>
+    <div class="video-carousel" appHorizontalDirectives>
+      @for(video of videoService.viewedVideos(); track video.id) {
+        <div class="video-item"
+     (mouseenter)="videoService.onMouseEnter(video.id, 'viewed')"
+     (mouseleave)="videoService.onMouseLeave()"
+     (touchstart)="videoService.onTouchStart(video.id, 'viewed')"
+     (touchend)="videoService.onTouchEnd()"
+     (click)="videoService.selectVideo(video.id)">
+
+        @if (videoService.hoveredVideoId() === (video.id + '-viewed')) {
+          <video class="video-preview" #videoPlayer [muted]="true" [playsInline]="true" [src]="video.file" autoplay muted
+            (loadedmetadata)="videoService.onVideoLoaded(videoPlayer, video.id, 'viewed')"
+            (timeupdate)="videoService.checkVideoTime(videoPlayer)">
+          </video>
+        } @else {
+          <div class="video-preview-thumbnail">
+            <span class="video-title-thumbnail">{{video.title}}</span>
+            <img class="thumbnail-image" [src]="video.thumbnail" [alt]="video.title" />
+          </div>
+        }
+      </div>
+
+      }
+    </div>
+  </div>
+}
+
+@if(videoService.startedVideos().length > 0) {
+  <div class="genre-list">
+    <h2>Already Started</h2>
+    <div class="video-carousel" appHorizontalDirectives>
+      @for(video of videoService.startedVideos(); track video.id) {
+        <div class="video-item"
+        (mouseenter)="videoService.onMouseEnter(video.id, 'started')"
+        (mouseleave)="videoService.onMouseLeave()"
+        (touchstart)="videoService.onTouchStart(video.id, 'started')"
+        (touchend)="videoService.onTouchEnd()"
+        (click)="videoService.selectVideo(video.id)">
+   
+     @if (videoService.hoveredVideoId() === (video.id + '-started')) {
+       <video class="video-preview" #videoPlayer [muted]="true" [playsInline]="true" [src]="video.file" autoplay muted
+         (loadedmetadata)="videoService.onVideoLoaded(videoPlayer, video.id, 'started')"
+         (timeupdate)="videoService.checkVideoTime(videoPlayer)">
+       </video>
+     } @else {
+      <div class="video-preview-thumbnail">
+        <span class="video-title-thumbnail">{{video.title}}</span>
+        <img class="thumbnail-image" [src]="video.thumbnail" [alt]="video.title" />
+      </div>
+     }
+   </div>
+      }
+    </div>
+  </div>
+}

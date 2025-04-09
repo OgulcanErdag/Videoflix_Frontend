@@ -1,0 +1,7 @@
+@use '../../shared/styles/landing-shared.scss' as *;
+@use '../../shared/styles/mixins.scss' as *;
+
+
+.app-name{
+  color: $blue;
+}

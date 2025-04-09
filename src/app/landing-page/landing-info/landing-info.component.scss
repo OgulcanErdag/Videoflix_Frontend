@@ -1,0 +1,64 @@
+@use '../../shared/styles/landing-shared.scss' as *;
+@use '../../shared/styles/mixins.scss' as *;
+
+h1{
+  
+  font-size: 48px;
+}
+
+.form-landing{
+  width: 100%;
+  @include display(flex, row, center, center);
+  gap: 16px;
+  padding: 0 50px;
+  position: relative;
+  @media (max-width:750px){
+    flex-direction: column;
+    padding: 0 20px;
+  }
+}
+
+span{
+  text-wrap: nowrap;
+}
+
+.title{
+  color: white;
+  text-align: center;
+  @include display(flex, column, center, center);
+  gap: 16px;
+}
+
+.landing-content{
+  @include display(flex, column, center, center);
+  gap: 32px;
+}
+
+input{
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  border: solid;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 0 16px;
+  font-size: 16px;
+  &::placeholder{
+    color: white;
+  }
+  &:focus{
+    outline: none;
+    border: 1px solid $blue;
+    transition: 125ms;
+  }
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  @include position(absolute, $top: 100%);
+  position: absolute;
+  width: 100%;
+  padding: 0 50px;
+}

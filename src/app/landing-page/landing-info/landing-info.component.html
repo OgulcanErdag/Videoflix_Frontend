@@ -1,0 +1,24 @@
+<div class="landing-content">
+  <div class="title">
+    <h1>Movies, TV shows, and more</h1>
+    <p>Enter your email to create or restart your subscription.</p>
+  </div>
+  <form class="form-landing" [formGroup]="emailForm" (submit)="navigator.navigateTo('/register')" appClickOutside>
+    <input
+      type="email"
+      placeholder="Email address"
+      formControlName="email"
+      (input)="updateLandingEmail()"
+    />
+    @if (emailControl.dirty && !emailControl.valid) {
+      <p class="error-message">Please enter a valid email address.</p>
+    }
+    <button class="default" [disabled]="!emailControl.valid"  type="submit"> 
+      <span>Sign up</span>
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </form>
+</div>
+
+
+

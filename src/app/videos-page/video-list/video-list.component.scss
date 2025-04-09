@@ -1,0 +1,177 @@
+@use '../../shared/styles/mixins.scss' as *;
+.video-list{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+
+.video-item {
+  position: relative;
+  height: 150px;
+  width: 200px;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+img.blurred {
+  filter: blur(8px);
+  opacity: 0;
+}
+
+
+.genre-list {
+  margin: 20px 0;
+  
+  h2 {
+    font-size: 20px;
+    color: white;
+  }
+}
+
+.video-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  width: 100%;  
+  padding: 10px 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.video-item {
+  height: 150px;
+  width: 250px;
+  position: relative;
+  min-width: 250px;
+  scroll-snap-align: start;
+  &:hover{
+    width: 300px;
+    min-width: 300px;
+    cursor: pointer;
+    transition:  0.3s ease-in-out;
+
+  }
+}
+ 
+.thumbnail-image {
+  width: 100%;
+  min-width: 300px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-preview{
+  width: 100%;
+  height: 100%;
+  min-width: 200px;
+  object-fit: cover;
+}
+
+
+
+.background-video-container {
+  position: relative;
+  max-height: 40vh;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+  overflow: hidden;
+  mask-image: linear-gradient(to top, #000000, #0000009e);
+
+
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+
+  .overlay-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 96px 0 50px 96px;
+    overflow: scroll;
+    scrollbar-width: none;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    @media (max-width:1000px){
+      padding: 100px 0 0 20px;
+    }
+    @media(max-width:600px){
+      padding: 72px 0 0 10px;
+    }
+    
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      @media (max-width:1000px){
+        font-size: 32px;
+      }
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 18px;
+      @media (max-width:1000px){
+        @include elipsis(100%, 4);
+      }
+    }
+
+    .play-button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+  }
+}
+
+.list-container{
+  position: relative;
+  z-index: 999;
+  padding: 0px 96px 20px 96px;
+  @media (max-width:1000px){
+    padding: 0 20px 20px 20px;
+  }
+ 
+}
+
+
+.video-preview-thumbnail{
+  position: relative;
+}
+
+.video-title-thumbnail{
+  position: absolute;
+  background-color: $blue;
+  top: 0;
+  color: white;
+  margin: 10px;
+  padding: 4px 8px;
+  @include display(flex, row, center, center);
+  border-radius: 10px;
+  @include elipsis(1);
+}

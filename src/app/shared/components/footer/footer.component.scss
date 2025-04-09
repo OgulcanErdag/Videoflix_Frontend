@@ -1,0 +1,61 @@
+@use '../../styles/mixins.scss' as *;
+
+footer{
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  width: 100%;
+  @include display(flex, row, center, center);
+  gap: 32px;
+  padding: 24px 48px;
+  @media (max-width:500px){
+    gap: 8px;
+  }
+}
+
+strong{
+  
+  &:hover{
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 4px;
+    cursor: pointer;
+    scale: 1.02;
+  }
+}
+
+.timer{
+  @include display(flex, column, center, center);
+}
+
+.timer-slider{
+  @include display(flex, column, center, center);
+  gap: 8px;
+  span{
+    font-size: 16px;
+    width: 100%;
+    min-width: 145px;
+  }
+}
+
+.extra-link{
+  @include display(flex, column, center, center);
+}
+
+.videoFooter{
+  @include display(flex, row, center, center);
+  padding: 24px 96px;
+  position: relative;
+  z-index: 999;
+  @media (max-width:1000px){
+    padding: 24px 20px;
+  }
+  @media (max-width:500px){
+    @include display(flex, column, center, center);
+    .extra-link{
+      @include display(flex, row, center, center);
+      gap: 12px;
+    }
+  }
+  
+}

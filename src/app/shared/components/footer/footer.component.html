@@ -1,0 +1,25 @@
+<footer [ngClass]="{'videoFooter': actualRoute == '/videos'}">
+  @if(actualRoute != "/videos"){
+    <strong (click)="navigator.navigateTo('/privacy-policy')">Privacy Policy</strong>
+    <strong (click)="navigator.navigateTo('/legal-notice')">Legal Notice</strong>
+  }@else {
+    <div class="extra-link">
+      <strong (click)="navigator.navigateTo('/privacy-policy')">Privacy Policy</strong>
+      <strong (click)="navigator.navigateTo('/legal-notice')">Legal Notice</strong>
+    </div>
+  }
+ 
+
+  @if(actualRoute == "/videos") {
+    <div class="timer">
+      <label for="inactivity-time">Inactivity Timer</label>
+      <div class="timer-slider">
+        <input id="inactivity-time" type="range" min="60" max="600" step="10"
+          [value]="inactivityService.inactivityTimeout / 1000"
+          (input)="inactivityService.updateInactivityTimeout($event)" />
+        <span>{{ inactivityService.getTimeLeft() }} sec / {{ inactivityService.inactivityTimeout / 1000 }} sec</span>
+      </div>
+    </div>
+  }
+  
+</footer>

@@ -1,0 +1,62 @@
+<div class="form-container" [ngClass]="{'successful': authService.successful()}">
+  <form class="form-login" [formGroup]="registerForm" #registerFormRef="ngForm" (ngSubmit)="register()" >
+    
+    @if(!authService.successful()){
+      <h1 class="form-title">Sign up</h1>
+      <div class="formField">
+        <input type="email" placeholder="Email address" formControlName="email">
+        <mat-icon>email</mat-icon>
+        @if (emailControl.invalid && emailControl.touched) {
+        <p class="error-message">
+          @if (emailControl.hasError('required')) { Email is required. }
+          @if (emailControl.hasError('pattern')) { Please enter a valid email address. }
+        </p>
+        }
+      </div>
+      <div class="formField">
+        <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Enter a password" formControlName="password"
+          #password>
+        <mat-icon class="visible" (click)="showPassword = !showPassword">{{ showPassword ? 'visibility' : 'visibility_off'
+          }}</mat-icon>
+        @if (passwordControl.invalid && passwordControl.touched) {
+        <p class="error-message">
+          @if (passwordControl.hasError('required')) { Password is required. }
+          @if (passwordControl.hasError('pattern')) { Min. 8 letters, 1 uppercase and 1 number. }
+        </p>
+        }
+      </div>
+      <div class="formField">
+        <input type="{{ showRepeatedPassword ? 'text' : 'password' }}" placeholder="Confirm password"
+          formControlName="repeated_password" #password>
+        <mat-icon class="visible" (click)="showRepeatedPassword = !showRepeatedPassword">{{ showRepeatedPassword ?
+          'visibility' : 'visibility_off' }}</mat-icon>
+        @if (registerForm.errors?.['passwordMismatch'] && (registerForm.dirty || registerForm.touched)) {
+        <div class="error-message">
+          Passwords do not match.
+        </div>
+        }
+      </div>
+      }
+      @if(authService.successful()){
+        <h1 class="form-title title-mobile">Email sent</h1>
+        <p>Your account has been created!
+          Please check your <strong>email</strong> to confirm your account.
+          If you don't see the <strong>email</strong>, please check your <strong>spam</strong> folder.
+          You can not log in until you have confirmed your <strong>email</strong>.
+        </p>
+      }
+    </form>
+    @if(!authService.successful()){
+      <div class="form-footer">
+        <button class="default" type="submit" [disabled]="!registerForm.valid || authService.sending()" (click)="registerFormRef.ngSubmit.emit()">Get
+          started</button>
+      </div>
+    }
+    @if(authService.successful()){
+      <div class="form-footer">
+        <button class="default" type="submit" (click)="navigator.navigateTo('/login')">Gotcha</button>
+      </div>
+    }
+    
+  
+</div>

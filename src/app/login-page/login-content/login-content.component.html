@@ -1,0 +1,43 @@
+ <div class="form-container">
+  <form [formGroup]="loginForm" class="form-login" (ngSubmit)="login()" #loginFormRef="ngForm">
+    <h1 class="form-title">Log in</h1>
+    
+    <div class="formField">
+      <input type="email" placeholder="Email address" formControlName="email">
+      <mat-icon>email</mat-icon>
+      @if (emailControl.invalid && emailControl.touched) {
+        <p class="error-message">
+          @if (emailControl.hasError('required')) { Email is required. }
+          @if (emailControl.hasError('pattern')) { Please enter a valid email address. }
+        </p>
+      }
+    </div>
+   
+    <div class="formField">
+      <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" formControlName="password"
+        #password>
+      <mat-icon class="visible" (click)="showPassword = !showPassword">{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+      @if (passwordControl.invalid && passwordControl.touched) {
+        <p class="error-message">
+          @if (passwordControl.hasError('required')) { Password is required. }
+          @if (passwordControl.hasError('pattern')) { Min. 8 letters, 1 uppercase and 1 number. }
+        </p>
+      }
+    </div>
+
+  </form>
+  <div class="form-footer">
+    <label for="rememberMe" class="custom-checkbox" >
+      <input type="checkbox" id="rememberMe" [(ngModel)]="rememberMe" (click)="setRememberMe()" > 
+      <span class="checkbox"></span>
+      Remember me
+    </label>
+    <button class="default" [disabled]="!loginForm.valid || authService.sending()" (click)="loginFormRef.ngSubmit.emit()">Log in</button>
+    <button class="default" (click)="authService.guestLogin()" [disabled]="authService.sending()">GuestLogin ></button>
+    <strong (click)="navigator.navigateTo('/forgot-password')">Forgot your password?</strong>
+    <div class="extra-link">
+      <span> New to Videoflix? </span>
+      <strong (click)="navigator.navigateTo('/register')">Sign Up now</strong>
+    </div>
+  </div>
+</div>

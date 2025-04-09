@@ -1,0 +1,67 @@
+@use '../public/shared/css/fonts.scss' as *;
+@use 'app/shared/styles/mixins.scss' as *;
+@use 'app/shared/styles/keyframes.scss' as *;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.background {
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  background-size: cover;
+  background-position: center;
+  @include position(fixed, $top: 0, $left: 0, $right: 0, $bottom: 0);
+  z-index: -1;
+  @include display(flex, column, flex-start, center);
+  &::after {
+    content: "";
+    @include position(absolute, $top: 0, $left: 0, $right: 0, $bottom: 0);
+    background: rgba(0, 0, 0, 0.5); 
+  }
+}
+
+.fade-in {
+  animation: fadeBackground 200ms ease-in-out;
+}
+
+
+button{
+  border-radius: 40px;
+  @include display(flex, row, center, center);
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  &.default{
+    background-color: $blue;
+    cursor: pointer;
+    &:hover{
+      background-color: $blue-hover;
+      scale: 1.05;
+      transition: 125ms ease-in-out;
+    }
+    &:disabled{
+      background-color: $blue-disabled;
+      cursor: not-allowed;
+    }
+  }
+}
+
+app-header, app-footer, app-video-list{
+  width: 100%;
+}
+
+
+
+.no-scroll{
+  overflow: hidden;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
