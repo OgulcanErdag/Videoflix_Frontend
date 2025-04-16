@@ -5,20 +5,19 @@ import { VideoplayerComponent } from "../shared/components/videoplayer/videoplay
 import { VideoListComponent } from "./video-list/video-list.component";
 import { VideoServiceService } from '../shared/services/video-service/video-service.service';
 import { CommonModule } from '@angular/common';
-import { StartAnimationComponent } from "../start-animation/start-animation.component";
 import { InactivityService } from '../shared/services/inactivity-service/inactivity.service';
 
 @Component({
   selector: 'app-videos-page',
-  imports: [HeaderComponent, FooterComponent, VideoplayerComponent, VideoListComponent, CommonModule, StartAnimationComponent],
+  imports: [HeaderComponent, FooterComponent, VideoplayerComponent, VideoListComponent, CommonModule],
   templateUrl: './videos-page.component.html',
   styleUrl: './videos-page.component.scss'
 })
 export class VideosPageComponent {
   videoService = inject(VideoServiceService);
   inactivityService = inject(InactivityService);
- 
-    constructor() {
-      this.inactivityService.firstView = true;
-    }
+
+  constructor() {
+    this.inactivityService.firstView = true;
+  }
 }

@@ -41,7 +41,8 @@
     <button class="default" [disabled]="!resetPasswordForm.valid || authService.sending()" type="submit"
       (click)="resetPasswordFormRef.ngSubmit.emit()">Reset password </button>
     }@else {
-    <button class="default" type="submit" [disabled]="authService.sending()" (click)="navigator.navigateTo('/login')">Gotcha</button>
+    <button class="default" type="submit" [disabled]="authService.sending()"
+      (click)="navigator.navigateTo('/login')">OK</button>
     }
   </div>
 

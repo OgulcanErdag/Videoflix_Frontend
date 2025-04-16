@@ -1,6 +1,6 @@
 @use './mixins.scss' as *;
 
-section{
+section {
   @include display(flex, column, space-between, center);
   height: 100%;
   min-height: 100vh;
@@ -10,16 +10,17 @@ section{
   margin: 0 auto;
 }
 
-.landing-main-content{
+.landing-main-content {
   width: 100%;
   height: 100%;
   @include display(flex, column, center, center);
-  @media (max-width: 600px){
+
+  @media (max-width: 600px) {
     padding: 0 20px
   }
 }
 
-.formField{
+.formField {
   position: relative;
   width: 100%;
   @include display(flex, row, center, center);
@@ -28,72 +29,78 @@ section{
   border: 1px solid $blue-hover;
   padding: 8px 16px;
 
-  &:focus-within{
+  &:focus-within {
     border: 1px solid $blue;
   }
-  input{
+
+  input {
     width: 100%;
     border: none;
     outline: none;
     background-color: transparent;
     color: black;
-    &:focus{
+
+    &:focus {
       border: none;
       outline: none;
-      & ~ mat-icon {
+
+      &~mat-icon {
         color: $blue;
       }
     }
   }
-  mat-icon{
+
+  mat-icon {
     color: $blue-hover;
     overflow: visible;
   }
 }
 
 
-.form-login{
+.form-login {
   width: 100%;
   @include display(flex, column, center, center);
   gap: 32px;
-  
+
 }
 
-.form-container{
+.form-container {
   padding: 40px 32px;
   border-radius: 40px;
   width: 100%;
   max-width: 520px;
   background-color: white;
   @include display(flex, column, center, center);
-  @media(max-width: 450px){
+
+  @media(max-width: 450px) {
     padding: 32px 24px;
   }
 }
 
 
-.form-title{
+.form-title {
   color: $blue;
   font-size: 48px;
   text-align: center;
   line-height: 48px;
 }
 
-.extra-link{
+.extra-link {
   @include display(flex, row, center, center);
   gap: 16px;
 }
 
 
-.form-footer{
+.form-footer {
   @include display(flex, column, center, center);
   gap: 16px;
   padding-top: 32px;
 }
 
-strong{
+strong {
   color: $blue;
-  &:hover{
+
+  &:hover {
     cursor: pointer;
     scale: 1.05;
   }
@@ -107,13 +114,13 @@ strong{
   gap: 20px;
 
   input[type="checkbox"] {
-    display: none; 
+    display: none;
   }
 
   .checkbox {
-    width: 16px; 
+    width: 16px;
     height: 16px;
-    border: 2px solid $blue; 
+    border: 2px solid $blue;
     border-radius: 4px;
     position: relative;
     transition: all 0.2s ease;
@@ -130,19 +137,19 @@ strong{
     }
   }
 
-  input[type="checkbox"]:checked + .checkbox {
+  input[type="checkbox"]:checked+.checkbox {
     &:after {
       transform: translate(-50%, -50%) scale(1);
     }
   }
 }
 
-.visible{
+.visible {
   cursor: pointer;
 }
 
 
-.error-message{
+.error-message {
   width: 100%;
   text-align: left;
   color: red;
@@ -151,33 +158,33 @@ strong{
 }
 
 
-.p-forgot{
+.p-forgot {
   text-align: center;
   font-size: 18px;
 }
 
-.successful{
-  animation: rotateCard 1s ease-in-out 
+.successful {
+  animation: rotateCard 1s ease-in-out
 }
 
 
-.link{
+.link {
   color: $blue;
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 4px;
   text-decoration-thickness: 4px;
   margin-top: -10px;
   cursor: pointer;
-  &:hover{
-    text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
     transition: 125ms ease-in-out;
   }
 }
 
-@media (max-width:400px){
-  .title-mobile{
+@media (max-width:400px) {
+  .title-mobile {
     font-size: 36px;
   }
 
 }
-

@@ -1,35 +1,36 @@
 <div class="form-container" [ngClass]="{'successful': authService.successful()}">
   <form class="form-login" [formGroup]="emailForm" #emailFormRef="ngForm"
     (ngSubmit)="authService.sendResetPasswordEmail()">
-    
+
     @if(!authService.successful()){
-      <h1 class="form-title title-mobile">Forgot your password?</h1>
-      <p class="p-forgot">We will send you an email with instructions to reset your password.</p>
-      <div class="formField">
-        <input type="email" placeholder="Email address" formControlName="email" (input)="updateForgotEmail()" />
-        <mat-icon>email</mat-icon>
-        @if (emailControl.invalid && emailControl.touched) {
-          <p class="error-message">
-            @if (emailControl.hasError('required')) { Email is required. }
-            @if (emailControl.hasError('pattern')) { Please enter a valid email address. }
-          </p>
-        }
-      </div>
-    }@else{
-      <h1 class="form-title title-mobile">Email sent</h1>
-      <p class="p-forgot">Please check your <strong>email</strong>. 
-        If you don't see the <strong>email</strong>, please check your <strong>spam</strong> folder.
-        If you still cant find the <strong>email</strong>, please try again.
+    <h1 class="form-title title-mobile">Forgot your password?</h1>
+    <p class="p-forgot">We will send you an email with instructions to reset your password.</p>
+    <div class="formField">
+      <input type="email" placeholder="Email address" formControlName="email" (input)="updateForgotEmail()" />
+      <mat-icon>email</mat-icon>
+      @if (emailControl.invalid && emailControl.touched) {
+      <p class="error-message">
+        @if (emailControl.hasError('required')) { Email is required. }
+        @if (emailControl.hasError('pattern')) { Please enter a valid email address. }
       </p>
+      }
+    </div>
+    }@else{
+    <h1 class="form-title title-mobile">Email sent</h1>
+    <p class="p-forgot">Please check your <strong>email</strong>.
+      If you don't see the <strong>email</strong>, please check your <strong>spam</strong> folder.
+      If you still cant find the <strong>email</strong>, please try again.
+    </p>
     }
   </form>
   <div class="form-footer">
     @if(!authService.successful()){
-      <button class="default" type="submit" [disabled]="!emailControl.valid || authService.sending()" (click)="emailFormRef.ngSubmit.emit()">Send
-        email</button>
+    <button class="default" type="submit" [disabled]="!emailControl.valid || authService.sending()"
+      (click)="emailFormRef.ngSubmit.emit()">Send
+      email</button>
     }
     @if(authService.successful()){
-      <button class="default" type="submit" (click)="navigator.navigateTo('/login')">Gotcha</button>
+    <button class="default" type="submit" (click)="navigator.navigateTo('/login')">OK</button>
     }
   </div>
 </div>

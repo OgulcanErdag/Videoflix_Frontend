@@ -10,6 +10,8 @@ export class InactivityService {
   lastResetTime = Date.now();
   remainingTime: number = this.inactivityTimeout / 1000;
   countdownInterval: any;
+  elapsedTime: number = 0;
+
 
   /**
    * The constructor of the InactivityService.
@@ -38,19 +40,33 @@ export class InactivityService {
     this.firstView = false;
     this.lastResetTime = Date.now();
     this.remainingTime = this.inactivityTimeout / 1000;
+    this.elapsedTime = 0;
+
     this.countdownInterval = setInterval(() => {
-      const timeLeft = Math.max(0, Math.ceil((this.inactivityTimeout - (Date.now() - this.lastResetTime)) / 1000));
+      const now = Date.now();
+      const timePassed = Math.floor((now - this.lastResetTime) / 1000);
+      const timeLeft = Math.max(0, Math.ceil((this.inactivityTimeout - (now - this.lastResetTime)) / 1000));
+
+      this.elapsedTime = timePassed;
       this.remainingTime = timeLeft;
+
       if (timeLeft <= 0) {
         clearInterval(this.countdownInterval);
       }
     }, 1000);
+
     this.inactivityTimer = setTimeout(() => {
       this.firstView = true;
       clearInterval(this.countdownInterval);
     }, this.inactivityTimeout);
   }
-  
+
+  formatTime(seconds: number): string {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+
 
   /**
    * Starts the inactivity timer by adding event listeners for various user actions.
@@ -78,7 +94,7 @@ export class InactivityService {
     const newTimeout = parseInt(inputElement.value, 10);
 
     if (!isNaN(newTimeout)) {
-      this.inactivityTimeout = newTimeout * 1000;
+      this.inactivityTimeout = newTimeout * 60 * 1000;
       this.resetInactivityTimer();
     }
   }

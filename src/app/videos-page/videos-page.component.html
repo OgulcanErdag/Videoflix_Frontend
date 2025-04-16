@@ -1,18 +1,11 @@
-
-<section >
+<section>
   @if (videoService.currentVideo() != null) {
-    <div class="player-wrapper">
-      <app-videoplayer></app-videoplayer>
-    </div>
-    
+  <div class="player-wrapper">
+    <app-videoplayer></app-videoplayer>
+  </div>
+
   }
-    <app-header></app-header>
-    <app-video-list></app-video-list>
-    <app-footer></app-footer>
+  <app-header></app-header>
+  <app-video-list></app-video-list>
+  <app-footer></app-footer>
 </section>
-
-@if(inactivityService.firstView) {
-  <app-start-animation></app-start-animation>
-}
-
-

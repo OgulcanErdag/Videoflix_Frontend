@@ -1,6 +1,6 @@
 @use '../../styles/mixins.scss' as *;
 
-footer{
+footer {
   color: white;
   font-size: 18px;
   font-weight: 500;
@@ -8,54 +8,59 @@ footer{
   @include display(flex, row, center, center);
   gap: 32px;
   padding: 24px 48px;
-  @media (max-width:500px){
+
+  @media (max-width:500px) {
     gap: 8px;
   }
 }
 
-strong{
-  
-  &:hover{
-    text-decoration: underline;
+strong {
+
+  &:hover {
+    text-decoration: none;
     text-underline-offset: 4px;
     text-decoration-thickness: 4px;
     cursor: pointer;
-    scale: 1.02;
+    scale: 1.20;
   }
 }
 
-.timer{
+.timer {
   @include display(flex, column, center, center);
 }
 
-.timer-slider{
+.timer-slider {
   @include display(flex, column, center, center);
   gap: 8px;
-  span{
+
+  span {
     font-size: 16px;
     width: 100%;
     min-width: 145px;
   }
 }
 
-.extra-link{
+.extra-link {
   @include display(flex, column, center, center);
 }
 
-.videoFooter{
+.videoFooter {
   @include display(flex, row, center, center);
   padding: 24px 96px;
   position: relative;
   z-index: 999;
-  @media (max-width:1000px){
+
+  @media (max-width:1000px) {
     padding: 24px 20px;
   }
-  @media (max-width:500px){
+
+  @media (max-width:500px) {
     @include display(flex, column, center, center);
-    .extra-link{
+
+    .extra-link {
       @include display(flex, row, center, center);
       gap: 12px;
     }
   }
-  
+
 }

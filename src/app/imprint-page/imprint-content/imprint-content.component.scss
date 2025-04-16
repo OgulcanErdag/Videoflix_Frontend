@@ -3,14 +3,25 @@
 
 
 
-.links{
+.links {
   @include display(flex, column, flex-start, center);
-  
+
 }
 
-h1, p, div, span, a {
+h1,
+p,
+div,
+
+a {
   display: flex;
   flex-direction: column;
   width: 100%;
   text-align: left;
+}
+
+.link,
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -5,15 +5,16 @@ header {
   @include display(flex, row, space-between, center);
   height: 108px;
   padding: 0 96px;
-  @media(max-width:1000px){
+
+  @media(max-width:1000px) {
     padding: 0 20px;
   }
 
   @media (max-width:750px) {
-    
+
     height: 72px;
   }
-  
+
 }
 
 img {
@@ -30,6 +31,7 @@ img {
 .logo-short {
   height: 48px;
   width: 48px;
+
   &:hover {
     cursor: default;
   }
@@ -53,7 +55,7 @@ mat-icon {
   border-radius: 100%;
 
   &:hover {
-    scale: 1.05;
+    scale: 1.20;
   }
 }
 
