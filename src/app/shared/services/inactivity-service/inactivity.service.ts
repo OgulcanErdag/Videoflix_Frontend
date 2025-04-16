@@ -63,8 +63,10 @@ export class InactivityService {
 
   formatTime(seconds: number): string {
     const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    const secs = Math.floor(seconds % 60);
+    const minsStr = mins < 10 ? '0' + mins : '' + mins;
+    const secsStr = secs < 10 ? '0' + secs : '' + secs;
+    return `${minsStr}:${secsStr}`;
   }
 
 

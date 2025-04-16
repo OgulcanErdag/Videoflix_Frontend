@@ -55,7 +55,7 @@
         <div class="progress" [style.width.%]="progress"></div>
       </div>
       <div class="time-display">
-        {{ currentTime }}s / {{ totalDuration }}s
+        {{ formatTime(currentTime) }} / {{ formatTime(totalDuration) }}
       </div>
     </div>
 

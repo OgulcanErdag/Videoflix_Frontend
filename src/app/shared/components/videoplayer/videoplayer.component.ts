@@ -34,8 +34,10 @@ export class VideoplayerComponent implements AfterViewInit {
   videoEnded: boolean = false;
   video!: HTMLVideoElement
   inactivityService = inject(InactivityService);
+  formatTime = this.inactivityService.formatTime.bind(this.inactivityService);
   currentTime: number = 0;
   totalDuration: number = 0;
+
 
   /**
    * Called after the view has been initialized.
@@ -46,6 +48,7 @@ export class VideoplayerComponent implements AfterViewInit {
     this.setupFullscreenListener();
     this.fetchAndPlayVideo();
     this.addEventListeners();
+
   }
 
   /**
