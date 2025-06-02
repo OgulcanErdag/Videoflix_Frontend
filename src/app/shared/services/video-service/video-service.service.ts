@@ -37,7 +37,7 @@ export class VideoServiceService {
    * This is usually called once when the service is initialized.
    */
   getVideoData() {
-    this.http.get<any[]>('http://127.0.0.1:8000/videoflix/api/videos/')
+    this.http.get<any[]>('https://api.videoflix.ogulcan-erdag.com/api/videos/')
       .subscribe(data => {
         this.videoData.set(data);
         this.mapGenres(this.videoData());
@@ -187,7 +187,7 @@ export class VideoServiceService {
    */
   saveUserProgress(ended: boolean): void {
     if (!this.currentVideo()) return;
-    let apiUrl = `http://127.0.0.1:8000/videoflix/api/video/${this.currentVideo()}/progress/`;
+    let apiUrl = `https://api.videoflix.ogulcan-erdag.com/api/video/${this.currentVideo()}/progress/`;
     if (this.currentProgress() >= 0) {
       let payload = {
         last_viewed_position: this.currentProgress(),

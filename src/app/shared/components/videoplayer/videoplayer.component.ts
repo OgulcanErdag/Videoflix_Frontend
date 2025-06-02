@@ -81,7 +81,7 @@ export class VideoplayerComponent implements AfterViewInit {
    */
   fetchAndPlayVideo(): void {
     if (this.videoService.currentVideo() === null) return;
-    const apiUrl = `http://127.0.0.1:8000/videoflix/api/videos/${this.videoService.currentVideo()}/`;
+    const apiUrl = `https://api.videoflix.ogulcan-erdag.com/api/videos/${this.videoService.currentVideo()}/`;
     this.http.get(apiUrl).subscribe((data: any) => {
       if (data.hls_master_playlist_url) {
         this.currentVideoData = data;

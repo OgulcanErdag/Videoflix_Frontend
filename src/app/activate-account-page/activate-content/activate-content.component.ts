@@ -38,7 +38,7 @@ export class ActivateContentComponent {
    * after a 3 second delay. If the request is unsuccessful, it sets the `error` message.
    */
   activateAccount(uid: string, token: string): void {
-    this.http.get<{ message: string }>(`http://127.0.0.1:8000/videoflix/api/activate/${uid}/${token}/`)
+    this.http.get<{ message: string }>(`https://api.videoflix.ogulcan-erdag.com/api/activate/${uid}/${token}/`)
       .subscribe({
         next: (response) => {
           this.success = response.message;
