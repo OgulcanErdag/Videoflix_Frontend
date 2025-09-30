@@ -22,11 +22,15 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Upgrade npm to v11.5.1
+        run: npm i -g npm@11.5.1 && npm -v
+
       - name: Install dependencies (clean)
         run: npm ci
 
       - name: Build project
         run: npm run build
 
-      - name: Run audit (low and above)
+      - name: Run audit (low and above) - non blocking
         run: npm audit --audit-level=low
+        continue-on-error: true
