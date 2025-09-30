@@ -23,7 +23,7 @@
     "@angular/router": "^19.2.15",
     "@babel/helpers": "^7.26.10",
     "@babel/runtime": "^7.26.10",
-    "hls.js": "^1.5.20",
+    "hls.js": "^1.6.13",
     "on-headers": "^1.1.0",
     "prismjs": "^1.30.0",
     "rxjs": "~7.8.0",
